@@ -17,7 +17,7 @@ module catchem_config
   real(kind=kind_chem), parameter :: epsilc     = 1.e-30
 
   !-- chemistyr module configurations
-  integer :: chem_opt = 300
+  integer :: chem_opt = 300              !=1 gml_ghg
   integer :: kemit = 1
   integer :: dust_opt = 5
   integer :: dmsemis_opt = 1
@@ -25,7 +25,7 @@ module catchem_config
   integer :: biomass_burn_opt=1
   integer :: plumerise_flag = 2  ! 1=MODIS, 2=GBBEPx
   integer :: plumerisefire_frq=60
-  integer :: chem_conv_tr  = 0
+  integer :: chem_conv_tr  = 0            ! what does this do?
   integer :: aer_ra_feedback=1 !0
   integer :: aer_ra_frq=60
   integer :: wetdep_ls_opt = 1

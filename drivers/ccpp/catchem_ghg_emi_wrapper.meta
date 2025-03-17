@@ -1,0 +1,376 @@
+[ccpp-table-properties]
+  name = catchem_ghg_emi_wrapper
+  type = scheme
+  dependencies = ../../parameters/catchem_ghg_config.F90,../../parameters/catchem_constants.F90
+
+########################################################################
+[ccpp-arg-table]
+  name = catchem_ghg_emi_wrapper_init
+  type = scheme
+
+########################################################################
+[ccpp-arg-table]
+  name = catchem_ghg_emi_wrapper_finalize
+  type = scheme
+
+########################################################################
+[ccpp-arg-table]
+  name = catchem_ghg_emi_wrapper_run
+  type = scheme
+[naux2d]
+  standard_name = number_of_xy_dimensioned_auxiliary_arrays
+  long_name = number of 2d auxiliary arrays to output (for debugging)
+  units = count
+  dimensions = ()
+  type = integer
+  intent = in
+
+[naux3d]
+  standard_name = number_of_xyz_dimensioned_auxiliary_arrays
+  long_name = number of 3d auxiliary arrays to output (for debugging)
+  units = count
+  dimensions = ()
+  type = integer
+  intent = in
+
+[aux2d]
+  standard_name = auxiliary_2d_arrays
+  long_name = auxiliary 2d arrays to output (for debugging)
+  units = none
+  dimensions = (horizontal_loop_extent,number_of_xyz_dimensioned_auxiliary_arrays)
+  type = real
+  kind = kind_phys
+  active = (number_of_xy_dimensioned_auxiliary_arrays > 0)
+  intent = inout
+
+[aux3d]
+  standard_name = auxiliary_3d_arrays
+  long_name = auxiliary 3d arrays to output (for debugging)
+  units = none
+  dimensions = (horizontal_loop_extent,vertical_layer_dimension,number_of_xyz_dimensioned_auxiliary_arrays)
+  type = real
+  kind = kind_phys
+  active = (number_of_xyz_dimensioned_auxiliary_arrays > 0)
+  intent = inout
+
+[im]
+  standard_name = horizontal_loop_extent
+  long_name = horizontal dimension
+  units = count
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[kte]
+  standard_name = vertical_layer_dimension
+  long_name = vertical layer dimension
+  units = count
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[kme]
+  standard_name = vertical_interface_dimension
+  long_name = number of vertical levels plus one
+  units = count
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[ktau]
+  standard_name = index_of_timestep
+  long_name = current forecast iteration
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[dt]
+  standard_name = timestep_for_physics
+  long_name = physics time step
+  units = s
+  dimensions = ()
+  type = real
+  kind = kind_phys
+  intent = in
+ 
+[garea]
+  standard_name = cell_area
+  long_name = grid cell area
+  units = m2
+  dimensions = (horizontal_loop_extent)
+  type = real
+  kind = kind_phys
+  intent = in
+ 
+[rlat]
+  standard_name = latitude
+  long_name = latitude
+  units = radian
+  dimensions = (horizontal_loop_extent)
+  type = real
+  kind = kind_phys
+  intent = in
+ 
+[rlon]
+  standard_name = longitude
+  long_name = longitude
+  units = radian
+  dimensions = (horizontal_loop_extent)
+  type = real
+  kind = kind_phys
+  intent = in
+ 
+[julian]
+  standard_name = forecast_julian_day
+  long_name = julian day
+  units = days
+  dimensions = ()
+  type = real
+  kind = kind_phys
+  intent = in
+ 
+[pr3d]
+  standard_name = air_pressure_at_interface
+  long_name = air pressure at model layer interfaces
+  units = Pa
+  dimensions = (horizontal_loop_extent,vertical_interface_dimension)
+  type = real
+  kind = kind_phys
+  intent = in
+ 
+[ph3d]
+  standard_name = geopotential_at_interface
+  long_name = geopotential at model layer interfaces
+  units = m2 s-2
+  dimensions = (horizontal_loop_extent,vertical_interface_dimension)
+  type = real
+  kind = kind_phys
+  intent = in
+ 
+[prl3d]
+  standard_name = air_pressure
+  long_name = mean layer pressure
+  units = Pa
+  dimensions = (horizontal_loop_extent,vertical_layer_dimension)
+  type = real
+  kind = kind_phys
+  intent = in
+ 
+[tk3d]
+  standard_name = air_temperature_of_new_state
+  long_name = updated temperature
+  units = K
+  dimensions = (horizontal_loop_extent,vertical_layer_dimension)
+  type = real
+  kind = kind_phys
+  intent = inout
+ 
+[spechum]
+  standard_name = specific_humidity_of_new_state
+  long_name = water vapor specific humidity updated by physics
+  units = kg kg-1
+  dimensions = (horizontal_loop_extent,vertical_layer_dimension)
+  type = real
+  kind = kind_phys
+  intent = inout
+ 
+[idat]
+  standard_name = date_and_time_at_model_initialization_in_iso_order
+  long_name = initialization date and time
+  units = none
+  dimensions = (8)
+  type = integer
+  intent = in
+ 
+[ntrac]
+  standard_name = number_of_tracers
+  long_name = number of tracers
+  units = count
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[ntco2]
+  standard_name = index_for_co2_in_tracer_concentration_array
+  long_name = tracer index for co2
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+[ntco2_bgd]
+  standard_name = index_for_co2_bgd_in_tracer_concentration_array
+  long_name = tracer index for co2_bgd
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+[ntco2_land]
+  standard_name = index_for_co2_land_in_tracer_concentration_array
+  long_name = tracer index for co2_land
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+[ntco2_fire]
+  standard_name = index_for_co2_fire_in_tracer_concentration_array
+  long_name = tracer index for co2_fire
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+[ntco2_fossil]
+  standard_name = index_for_co2_fossil_in_tracer_concentration_array
+  long_name = tracer index for co2_fossil
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+[ntco2_ocn]
+  standard_name = index_for_co2_ocn_in_tracer_concentration_array
+  long_name = tracer index for co2_ocn
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in 
+[ntch4]
+  standard_name = index_for_ch4_in_tracer_concentration_array
+  long_name = tracer index for ch4
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[ntsf6]
+  standard_name = index_for_sf6_in_tracer_concentration_array
+  long_name = tracer index for sf6
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[ntqv]
+  standard_name = index_of_specific_humidity_in_tracer_concentration_array
+  long_name = tracer index for water vapor (specific humidity)
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[ntcw]
+  standard_name = index_of_cloud_liquid_water_mixing_ratio_in_tracer_concentration_array
+  long_name = tracer index for cloud condensate (or liquid water)
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[ntiw]
+  standard_name = index_of_cloud_ice_mixing_ratio_in_tracer_concentration_array
+  long_name = tracer index for  ice water
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[ntrw]
+  standard_name = index_of_rain_mixing_ratio_in_tracer_concentration_array
+  long_name = tracer index for rain water
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[ntsw]
+  standard_name = index_of_snow_mixing_ratio_in_tracer_concentration_array
+  long_name = tracer index for snow water
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[ntgl]
+  standard_name = index_of_graupel_mixing_ratio_in_tracer_concentration_array
+  long_name = tracer index for graupel
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[ghg_emi]
+  standard_name = ghg_emissions
+  long_name = ghg emissions
+  units = mol m-2 sec
+  dimensions = (horizontal_loop_extent,24,6)
+#  dimensions = (horizontal_loop_extent,4)
+  type = real
+  kind = kind_phys
+  intent = in
+ 
+[ghgem]
+  standard_name = instantaneous_greenhouse_gas_emissions
+  long_name = instantaneous anthopogenic, natural and biomass burning emissions for co2,ch4,sf6
+  units = kg
+  dimensions = (horizontal_loop_extent,6)
+  type = real
+  kind = kind_phys
+  intent = inout
+ 
+[gq0]
+  standard_name = tracer_concentration_of_new_state
+  long_name = tracer concentration updated by physics
+  units = kg kg-1
+  dimensions = (horizontal_loop_extent,vertical_layer_dimension,number_of_tracers)
+  type = real
+  kind = kind_phys
+  intent = inout
+ 
+[qgrs]
+  standard_name = tracer_concentration
+  long_name = model layer mean tracer concentration
+  units = kg kg-1
+  dimensions = (horizontal_loop_extent,vertical_layer_dimension,number_of_tracers)
+  type = real
+  kind = kind_phys
+  intent = inout
+ 
+[tile_num]
+  standard_name = index_of_cubed_sphere_tile
+  long_name = tile number
+  units = none
+  dimensions = ()
+  type = integer
+  intent = in
+ 
+[mpirank]
+  standard_name = mpi_rank
+  long_name = current MPI-rank
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+
+[mpiroot]
+  standard_name = mpi_root
+  long_name = master MPI-rank
+  units = index
+  dimensions = ()
+  type = integer
+  intent = in
+
+[errmsg]
+  standard_name = ccpp_error_message
+  long_name = error message for error handling in CCPP
+  units = none
+  dimensions = ()
+  type = character
+  kind = len=*
+  intent = out
+ 
+[errflg]
+  standard_name = ccpp_error_code
+  long_name = error code for error handling in CCPP
+  units = 1
+  dimensions = ()
+  type = integer
+  intent = out 
